@@ -9,6 +9,10 @@ import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
 import co.edu.udea.certificacion.parabank.tasks.OpenThe;
 import co.edu.udea.certificacion.parabank.tasks.RegisterAs;
+import co.edu.udea.certificacion.parabank.questions.ValidationThe;
+import co.edu.udea.certificacion.parabank.tasks.RegisterLeaving;
+import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
+import static org.hamcrest.Matchers.hasItem;
 
 public class ParabankStepDefinition {
 
@@ -24,8 +28,7 @@ public class ParabankStepDefinition {
 
     @Given("^(.*) is on the ParaBank registration page$")
     public void isOnTheRegistrationPage(String actorName) {
-        OnStage.theActorCalled(actorName);
-        throw new PendingException();
+        OnStage.theActorCalled(actorName).attemptsTo(OpenThe.registrationForm());
     }
 
     @Given("^(.*) is registered and logged in to ParaBank$")
@@ -61,7 +64,7 @@ public class ParabankStepDefinition {
 
     @When("^(?:she|he) registers leaving \"(.*)\" empty$")
     public void registersLeavingFieldEmpty(String field) {
-        throw new PendingException();
+        OnStage.theActorInTheSpotlight().attemptsTo(RegisterLeaving.empty(field));
     }
 
     @Then("^(?:she|he) should see the message \"(.*)\"$")
@@ -71,6 +74,7 @@ public class ParabankStepDefinition {
 
     @Then("^(?:she|he) should see the error \"(.*)\"$")
     public void shouldSeeTheError(String error) {
-        throw new PendingException();
+        OnStage.theActorInTheSpotlight().should(
+                seeThat("the error messages", ValidationThe.errorMessages(), hasItem(error)));
     }
 }
