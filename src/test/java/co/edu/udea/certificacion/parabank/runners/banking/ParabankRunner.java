@@ -1,4 +1,4 @@
-package co.edu.udea.certificacion.parabank.runners;
+package co.edu.udea.certificacion.parabank.runners.banking;
 
 import io.cucumber.junit.CucumberOptions;
 import net.serenitybdd.cucumber.CucumberWithSerenity;
@@ -6,8 +6,8 @@ import org.junit.runner.RunWith;
 
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(
-        features = "src/test/resources/features/.../",
-        glue = "co.edu.udea.certificacion.stepdefinitions",
+        features = "src/test/resources/features/banking",
+        glue = "co.edu.udea.certificacion.parabank.stepdefinitions",
         snippets = CucumberOptions.SnippetType.CAMELCASE
 )
-public class Runner {}
+public class ParabankRunner {}
