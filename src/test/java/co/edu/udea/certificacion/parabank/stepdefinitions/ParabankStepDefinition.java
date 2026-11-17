@@ -7,6 +7,8 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
+import co.edu.udea.certificacion.parabank.tasks.OpenThe;
+import co.edu.udea.certificacion.parabank.tasks.RegisterAs;
 
 public class ParabankStepDefinition {
 
@@ -17,8 +19,7 @@ public class ParabankStepDefinition {
 
     @Given("^(.*) is on the ParaBank home page$")
     public void isOnTheParabankHomePage(String actorName) {
-        OnStage.theActorCalled(actorName);
-        throw new PendingException();
+        OnStage.theActorCalled(actorName).attemptsTo(OpenThe.browser());
     }
 
     @Given("^(.*) is on the ParaBank registration page$")
@@ -35,7 +36,7 @@ public class ParabankStepDefinition {
 
     @When("^(?:she|he) registers with valid personal data$")
     public void registersWithValidData() {
-        throw new PendingException();
+        OnStage.theActorInTheSpotlight().attemptsTo(RegisterAs.newCustomer());
     }
 
     @When("^(?:she|he) opens a new savings account$")
