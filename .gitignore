@@ -1,0 +1,19 @@
+# Gradle
+.gradle/
+build/
+
+# Reportes de Serenity
+target/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.classpath
+.project
+.settings/
+bin/
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
