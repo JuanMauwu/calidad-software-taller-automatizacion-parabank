@@ -26,7 +26,14 @@ Feature: Online banking on ParaBank
     Then he should see the error "<message>"
 
     Examples:
-      | field      | message                 |
-      | first name | First name is required. |
-      | last name  | Last name is required.  |
-      | password   | Password is required.   |
+      | field                 | message                             |
+      | first name            | First name is required.             |
+      | last name             | Last name is required.              |
+      | address               | Address is required.                |
+      | city                  | City is required.                   |
+      | state                 | State is required.                  |
+      | zip code              | Zip Code is required.               |
+      | ssn                   | Social Security Number is required. |
+      | username              | Username is required.               |
+      | password              | Password is required.               |
+      | password confirmation | Password confirmation is required.  |

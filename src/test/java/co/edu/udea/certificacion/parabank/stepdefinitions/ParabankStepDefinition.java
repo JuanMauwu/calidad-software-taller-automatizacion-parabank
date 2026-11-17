@@ -13,6 +13,7 @@ import co.edu.udea.certificacion.parabank.questions.ValidationThe;
 import co.edu.udea.certificacion.parabank.tasks.RegisterLeaving;
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static org.hamcrest.Matchers.hasItem;
+import co.edu.udea.certificacion.parabank.tasks.LogIn;
 
 public class ParabankStepDefinition {
 
@@ -59,9 +60,9 @@ public class ParabankStepDefinition {
 
     @When("^(?:she|he) logs in with an unknown user$")
     public void logsInWithUnknownUser() {
-        throw new PendingException();
+        OnStage.theActorInTheSpotlight()
+                .attemptsTo(LogIn.as("unknown" + System.currentTimeMillis(), "wrongPass123"));
     }
-
     @When("^(?:she|he) registers leaving \"(.*)\" empty$")
     public void registersLeavingFieldEmpty(String field) {
         OnStage.theActorInTheSpotlight().attemptsTo(RegisterLeaving.empty(field));

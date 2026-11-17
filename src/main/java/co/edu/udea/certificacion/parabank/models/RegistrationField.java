@@ -9,8 +9,14 @@ public enum RegistrationField {
 
     FIRST_NAME("first name", RegisterPage.FIRST_NAME),
     LAST_NAME("last name", RegisterPage.LAST_NAME),
-    PASSWORD("password", RegisterPage.PASSWORD);
-
+    ADDRESS("address", RegisterPage.STREET),
+    CITY("city", RegisterPage.CITY),
+    STATE("state", RegisterPage.STATE),
+    ZIP_CODE("zip code", RegisterPage.ZIP_CODE),
+    SSN("ssn", RegisterPage.SSN),
+    USERNAME("username", RegisterPage.USERNAME),
+    PASSWORD("password", RegisterPage.PASSWORD),
+    PASSWORD_CONFIRMATION("password confirmation", RegisterPage.CONFIRM_PASSWORD);
     private final String label;
     private final Target target;
 
