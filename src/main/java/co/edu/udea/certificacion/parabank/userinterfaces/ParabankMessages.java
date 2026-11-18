@@ -10,4 +10,6 @@ public class ParabankMessages {
 
     public static final Target ERROR_MESSAGES =
             Target.the("error messages").located(By.cssSelector(".error"));
+    public static final Target PAGE_TITLES =
+            Target.the("page titles").located(By.cssSelector("#rightPanel h1.title"));
 }

@@ -1,7 +1,6 @@
 package co.edu.udea.certificacion.parabank.stepdefinitions;
 
 import io.cucumber.java.Before;
-import io.cucumber.java.PendingException;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -14,6 +13,10 @@ import co.edu.udea.certificacion.parabank.tasks.RegisterLeaving;
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static org.hamcrest.Matchers.hasItem;
 import co.edu.udea.certificacion.parabank.tasks.LogIn;
+import co.edu.udea.certificacion.parabank.tasks.OpenNewAccount;
+import co.edu.udea.certificacion.parabank.tasks.TransferFunds;
+import co.edu.udea.certificacion.parabank.tasks.UpdateContactInfo;
+import co.edu.udea.certificacion.parabank.models.AccountType;
 
 public class ParabankStepDefinition {
 
@@ -34,8 +37,10 @@ public class ParabankStepDefinition {
 
     @Given("^(.*) is registered and logged in to ParaBank$")
     public void isRegisteredAndLoggedIn(String actorName) {
-        OnStage.theActorCalled(actorName);
-        throw new PendingException();
+        // ParaBank logs the customer in automatically after a successful registration
+        OnStage.theActorCalled(actorName).attemptsTo(
+                OpenThe.browser(),
+                RegisterAs.newCustomer());
     }
 
     @When("^(?:she|he) registers with valid personal data$")
@@ -45,17 +50,17 @@ public class ParabankStepDefinition {
 
     @When("^(?:she|he) opens a new savings account$")
     public void opensANewSavingsAccount() {
-        throw new PendingException();
+        OnStage.theActorInTheSpotlight().attemptsTo(OpenNewAccount.ofType(AccountType.SAVINGS));
     }
 
     @When("^(?:she|he) transfers (\\d+) dollars between (?:her|his) accounts$")
     public void transfersDollars(int amount) {
-        throw new PendingException();
+        OnStage.theActorInTheSpotlight().attemptsTo(TransferFunds.ofDollars(amount));
     }
 
     @When("^(?:she|he) updates (?:her|his) contact information$")
     public void updatesContactInformation() {
-        throw new PendingException();
+        OnStage.theActorInTheSpotlight().attemptsTo(UpdateContactInfo.withNewData());
     }
 
     @When("^(?:she|he) logs in with an unknown user$")
@@ -70,7 +75,8 @@ public class ParabankStepDefinition {
 
     @Then("^(?:she|he) should see the message \"(.*)\"$")
     public void shouldSeeTheMessage(String message) {
-        throw new PendingException();
+        OnStage.theActorInTheSpotlight().should(
+                seeThat("the page messages", ValidationThe.pageMessages(), hasItem(message)));
     }
 
     @Then("^(?:she|he) should see the error \"(.*)\"$")
